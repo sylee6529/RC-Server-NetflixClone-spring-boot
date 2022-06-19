@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="2d16a25e-7e44-44d1-a9ca-483bce53b697" name="rising_server_ray" url="http://sylab.site">
+        <fileTransfer rootFolder="/var/www/html/api-server-spring-boot-final2" accessType="SFTP" host="3.39.137.254" port="22" sshConfigId="57368ba7-4f91-4a68-97dc-88450134df20" sshConfig="ubuntu@3.39.137.254:22 key" keyPair="true">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" keepAliveTimeout="0" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>
