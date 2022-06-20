@@ -7,6 +7,19 @@
 # Editor-based HTTP Client requests
 /httpRequests/
 
-src/main/java/com/example/demo/config/secret
+.idea
+*.iml
+*.iws
+out
+gen
+.gradle
+build
 
-src/main/resources/application.yml
+# jwt 관련 파일
+../src/main/java/com/example/demo/utils/SHA256.java
+../src/main/java/com/example/demo/config/secret
+
+# db 설정 파일
+../src/main/resources/application.yml
+
+
