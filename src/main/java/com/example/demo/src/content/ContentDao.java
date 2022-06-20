@@ -86,7 +86,7 @@ public class ContentDao {
                 getContentKeywordByContentIdParam);
     }
 
-    public List<GetEpisodeInfoRes> getEpisodeInfo(int contentId, int seasonIdx) {
+    public List<GetEpisodeInfoRes> getEpisodeInfos(int contentId, int seasonIdx) {
         String getEpisodeInfoByContentIdQuery = "select Episode.episodePartNo as partNo,episodeTitle,(IF(MD.status = 'SUCCESS', episodeLocalURL, videoURL)) as videoURL," +
                 " (time_format(videoLength, '%l시간 %i분')) as videoLength,episodeIntroduction," +
                 " cast((time_to_sec(watchingTime) / time_to_sec(videoLength) * 100) AS signed integer) as watchingRate," +
@@ -127,5 +127,32 @@ public class ContentDao {
                         rs.getString("remainTime"),
                         rs.getInt("watchingRate")
                 ), getCurrentWatchResByContentIdParam);
+    }
+
+    public GetContentDetailRes getContentDetail(int contentId, int profileId, int seasonIdx) {
+        return new GetContentDetailRes(
+                getContentInfo(contentId, profileId),
+                getContentCreators(contentId),
+                getContentCasts(contentId),
+                getContentGenres(contentId),
+                getContentKeywords(contentId),
+                getEpisodeInfos(contentId, seasonIdx),
+                getCurrentWatch(contentId, profileId)
+        );
+    }
+
+    public List<GetContentSimpleRes> getContentCollections(int contentId) {
+        String getContentCollectionByContentIdQuery = "select contentTitle, contentPosterURL, contentURL" +
+                " from Collection" +
+                " inner join Content C on Collection.collectionContentId = C.contentId" +
+                " where Collection.contentId = ?";
+        int getContentCollectionByContentIdParam = contentId;
+
+        return this.jdbcTemplate.query(getContentCollectionByContentIdQuery,
+                (rs, rowNum) -> new GetContentSimpleRes(
+                        rs.getString("contentTitle"),
+                        rs.getString("contentPosterURL"),
+                        rs.getString("contentURL")
+                ), getContentCollectionByContentIdParam);
     }
 }

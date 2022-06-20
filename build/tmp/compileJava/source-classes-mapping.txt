@@ -4,14 +4,14 @@ com/example/demo/src/user/model/PostUserReq.java
  com.example.demo.src.user.model.PostUserReq
 com/example/demo/config/Constant.java
  com.example.demo.config.Constant
-com/example/demo/src/content/model/GetContentGenreRes.java
- com.example.demo.src.content.model.GetContentGenreRes
+com/example/demo/config/BaseException.java
+ com.example.demo.config.BaseException
 com/example/demo/utils/ValidationRegex.java
  com.example.demo.utils.ValidationRegex
 com/example/demo/src/user/model/PostLoginRes.java
  com.example.demo.src.user.model.PostLoginRes
-com/example/demo/src/content/model/GetContentKeywordRes.java
- com.example.demo.src.content.model.GetContentKeywordRes
+com/example/demo/src/content/model/GetContentInfoRes.java
+ com.example.demo.src.content.model.GetContentInfoRes
 com/example/demo/src/user/UserDao.java
  com.example.demo.src.user.UserDao
 com/example/demo/config/BaseResponseStatus.java
@@ -32,8 +32,8 @@ com/example/demo/config/secret/Secret.java
  com.example.demo.config.secret.Secret
 com/example/demo/utils/JwtService.java
  com.example.demo.utils.JwtService
-com/example/demo/src/content/model/GetContentCreatorRes.java
- com.example.demo.src.content.model.GetContentCreatorRes
+com/example/demo/src/content/model/GetEpisodeInfoRes.java
+ com.example.demo.src.content.model.GetEpisodeInfoRes
 com/example/demo/src/user/model/PostUserRes.java
  com.example.demo.src.user.model.PostUserRes
 com/example/demo/src/user/UserController.java
@@ -50,19 +50,13 @@ com/example/demo/src/user/UserService.java
  com.example.demo.src.user.UserService
 com/example/demo/src/user/model/GetUserRes.java
  com.example.demo.src.user.model.GetUserRes
-com/example/demo/src/content/model/GetContentInfoRes.java
- com.example.demo.src.content.model.GetContentInfoRes
-com/example/demo/src/content/model/GetEpisodeInfoRes.java
- com.example.demo.src.content.model.GetEpisodeInfoRes
-com/example/demo/config/BaseException.java
- com.example.demo.config.BaseException
-com/example/demo/src/content/model/GetContentCastRes.java
- com.example.demo.src.content.model.GetContentCastRes
-com/example/demo/src/content/model/Content.java
- com.example.demo.src.content.model.Content
-com/example/demo/src/content/ContentController.java
- com.example.demo.src.content.ContentController
+com/example/demo/src/content/model/GetContentDetailRes.java
+ com.example.demo.src.content.model.GetContentDetailRes
+com/example/demo/src/content/model/GetCollectionRes.java
+ com.example.demo.src.content.model.GetCollectionRes
 com/example/demo/src/content/ContentDao.java
  com.example.demo.src.content.ContentDao
 com/example/demo/src/content/ContentProvider.java
  com.example.demo.src.content.ContentProvider
+com/example/demo/src/content/ContentController.java
+ com.example.demo.src.content.ContentController
