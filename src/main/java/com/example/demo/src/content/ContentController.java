@@ -45,20 +45,36 @@ public class ContentController {
     }
 
     /**
-     * 컨텐츠 컬렉션 목록 조회
+     * 컬렉션 컨텐츠 목록 조회
      * [GET] /contents/:contentId/collection
      * @return BaseResponse<List<GetCollectionRes>>
      */
     @ResponseBody
     @GetMapping("/{contentId}/collection")
-    public BaseResponse<List<GetContentSimpleRes>> getCollections(@PathVariable("contentId") int contentId) {
+    public BaseResponse<List<GetContentSimpleRes>> getCollectionContents(@PathVariable("contentId") int contentId) {
         // Get Collection List
         try {
-            List<GetContentSimpleRes> getCollectionsRes = contentProvider.getContentCollection(contentId);
-            return new BaseResponse<>(getCollectionsRes);
+            List<GetContentSimpleRes> getCollectionContentsRes = contentProvider.getCollectionContents(contentId);
+            return new BaseResponse<>(getCollectionContentsRes);
         } catch(BaseException exception) {
             return new BaseResponse<>(exception.getStatus());
         }
     }
 
+    /**
+     * 함께 시청된 컨텐츠 목록 조회
+     * [GET] /contents/:contentId/more-like-this
+     * @return BaseResponse<List<GetContentSimpleRes>>
+     */
+    @ResponseBody
+    @GetMapping("/{contentId}/more-like-this")
+    public BaseResponse<List<GetContentSimpleRes>> getMoreLikeThisContents(@PathVariable("contentId") int contentId) {
+        // Get MoreLikeThis List
+        try {
+            List<GetContentSimpleRes> getMoreLikeThisContentsRes = contentProvider.getMoreLikeThisContents(contentId);
+            return new BaseResponse<>(getMoreLikeThisContentsRes);
+        } catch(BaseException exception) {
+            return new BaseResponse<>(exception.getStatus());
+        }
+    }
 }

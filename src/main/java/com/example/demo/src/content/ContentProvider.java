@@ -3,6 +3,7 @@ package com.example.demo.src.content;
 import com.example.demo.config.BaseException;
 import com.example.demo.src.content.model.*;
 import com.example.demo.utils.JwtService;
+import com.fasterxml.jackson.databind.ser.Serializers;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -33,13 +34,21 @@ public class ContentProvider {
         }
     }
 
-    public List<GetContentSimpleRes> getContentCollection(int contentId) throws BaseException {
+    public List<GetContentSimpleRes> getCollectionContents(int contentId) throws BaseException {
         try {
-            List<GetContentSimpleRes> getContentCollectionsRes = contentDao.getContentCollections(contentId);
-            return getContentCollectionsRes;
+            List<GetContentSimpleRes> getCollectionContentsRes = contentDao.getCollectionContents(contentId);
+            return getCollectionContentsRes;
         } catch (Exception exception) {
             throw new BaseException(DATABASE_ERROR);
         }
     }
 
+    public List<GetContentSimpleRes> getMoreLikeThisContents(int contentId) throws BaseException {
+        try {
+            List<GetContentSimpleRes> getMoreLikeThisContentsRes = contentDao.getMoreLikeThisContents(contentId);
+            return getMoreLikeThisContentsRes;
+        } catch (Exception exception) {
+            throw new BaseException(DATABASE_ERROR);
+        }
+    }
 }

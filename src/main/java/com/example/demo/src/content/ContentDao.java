@@ -141,18 +141,33 @@ public class ContentDao {
         );
     }
 
-    public List<GetContentSimpleRes> getContentCollections(int contentId) {
-        String getContentCollectionByContentIdQuery = "select contentTitle, contentPosterURL, contentURL" +
+    public List<GetContentSimpleRes> getCollectionContents(int contentId) {
+        String getCollectionContentsByContentIdQuery = "select contentTitle, contentPosterURL, contentURL" +
                 " from Collection" +
                 " inner join Content C on Collection.collectionContentId = C.contentId" +
                 " where Collection.contentId = ?";
         int getContentCollectionByContentIdParam = contentId;
 
-        return this.jdbcTemplate.query(getContentCollectionByContentIdQuery,
+        return this.jdbcTemplate.query(getCollectionContentsByContentIdQuery,
                 (rs, rowNum) -> new GetContentSimpleRes(
                         rs.getString("contentTitle"),
                         rs.getString("contentPosterURL"),
                         rs.getString("contentURL")
                 ), getContentCollectionByContentIdParam);
+    }
+
+    public List<GetContentSimpleRes> getMoreLikeThisContents(int contentId) {
+        String getMoreLikeThisContentsByContentIdQuery = "select contentTitle, contentPosterURL, contentURL" +
+                " from MoreLikeThis" +
+                " inner join Content C on MoreLikeThis.moreLikeThisContentId = C.contentId" +
+                " where MoreLikeThis.contentId = ?";
+        int getMoreLikeThisContentByContentIdParam = contentId;
+
+        return this.jdbcTemplate.query(getMoreLikeThisContentsByContentIdQuery,
+                (rs, rowNum) -> new GetContentSimpleRes(
+                        rs.getString("contentTitle"),
+                        rs.getString("contentPosterURL"),
+                        rs.getString("contentURL")
+                ), getMoreLikeThisContentByContentIdParam);
     }
 }
