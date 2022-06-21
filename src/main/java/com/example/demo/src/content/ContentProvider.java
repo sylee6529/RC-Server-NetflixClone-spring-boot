@@ -51,4 +51,13 @@ public class ContentProvider {
             throw new BaseException(DATABASE_ERROR);
         }
     }
+
+    public List<GetVideoSimpleRes> getTrailerAndMoreContents(int contentId) throws BaseException {
+        try {
+            List<GetVideoSimpleRes> getTrailerAndMoreContentsRes = contentDao.getTrailerAndMoreContents(contentId);
+            return getTrailerAndMoreContentsRes;
+        } catch (Exception exception) {
+            throw new BaseException(DATABASE_ERROR);
+        }
+    }
 }

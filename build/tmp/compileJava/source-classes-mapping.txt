@@ -54,6 +54,8 @@ com/example/demo/src/content/model/GetContentDetailRes.java
  com.example.demo.src.content.model.GetContentDetailRes
 com/example/demo/src/content/model/GetContentSimpleRes.java
  com.example.demo.src.content.model.GetContentSimpleRes
+com/example/demo/src/content/model/GetVideoSimpleRes.java
+ com.example.demo.src.content.model.GetVideoSimpleRes
 com/example/demo/src/content/ContentController.java
  com.example.demo.src.content.ContentController
 com/example/demo/src/content/ContentDao.java

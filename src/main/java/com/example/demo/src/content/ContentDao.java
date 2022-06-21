@@ -170,4 +170,17 @@ public class ContentDao {
                         rs.getString("contentURL")
                 ), getMoreLikeThisContentByContentIdParam);
     }
+
+    public List<GetVideoSimpleRes> getTrailerAndMoreContents(int contentId) {
+        String getTrailerAndMoreContentsByContentIdQuery = "select videoTitle, videoURL" +
+                " from TrailerAndMore" +
+                " where TrailerAndMore.contentId = ?";
+        int getTrailerAndMoreContentsByContentIdParam = contentId;
+
+        return this.jdbcTemplate.query(getTrailerAndMoreContentsByContentIdQuery,
+                (rs, rowNum) -> new GetVideoSimpleRes(
+                        rs.getString("videoTitle"),
+                        rs.getString("videoURL")
+                ), getTrailerAndMoreContentsByContentIdParam);
+    }
 }

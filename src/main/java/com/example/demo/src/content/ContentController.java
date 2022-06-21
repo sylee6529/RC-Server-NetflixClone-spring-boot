@@ -5,6 +5,7 @@ import com.example.demo.config.BaseResponse;
 import com.example.demo.src.content.model.*;
 import com.example.demo.utils.JwtService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.parameters.P;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -73,6 +74,23 @@ public class ContentController {
         try {
             List<GetContentSimpleRes> getMoreLikeThisContentsRes = contentProvider.getMoreLikeThisContents(contentId);
             return new BaseResponse<>(getMoreLikeThisContentsRes);
+        } catch(BaseException exception) {
+            return new BaseResponse<>(exception.getStatus());
+        }
+    }
+
+    /**
+     * 예고편 및 다른 영상 목록 조회
+     * [GET] /contents/:contentId/trailer-and-more
+     * @return BaseResponse<List<GetVideoSimpleRes>>
+     */
+    @ResponseBody
+    @GetMapping("/{contentId}/trailer-and-more")
+    public BaseResponse<List<GetVideoSimpleRes>> getTrailerAndMoreContents(@PathVariable("contentId") int contentId) {
+        // Get TrailerAndMore List
+        try {
+            List<GetVideoSimpleRes> getTrailerAndMoreContentsRes = contentProvider.getTrailerAndMoreContents(contentId);
+            return new BaseResponse<>(getTrailerAndMoreContentsRes);
         } catch(BaseException exception) {
             return new BaseResponse<>(exception.getStatus());
         }
