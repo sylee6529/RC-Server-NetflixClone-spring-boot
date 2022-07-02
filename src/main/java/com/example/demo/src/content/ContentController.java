@@ -95,4 +95,22 @@ public class ContentController {
             return new BaseResponse<>(exception.getStatus());
         }
     }
+
+    /**
+     * 컨텐츠 전체 목록 조회
+     * [GET] /contents
+     * @return BaseResponse<List<GetPackageContentRes>>
+     */
+    @ResponseBody
+    @GetMapping("")
+    public BaseResponse<List<GetPackageContentRes>> getPackageContents() {
+        // Get Contents List
+        try {
+            List<GetPackageContentRes> getPackageContentsRes = contentProvider.getPackageContents();
+            return new BaseResponse<>(getPackageContentsRes);
+        } catch(BaseException exception) {
+            System.out.println(exception);
+            return new BaseResponse<>(exception.getStatus());
+        }
+    }
 }

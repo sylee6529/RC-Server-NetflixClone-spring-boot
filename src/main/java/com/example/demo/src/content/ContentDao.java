@@ -5,7 +5,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import javax.persistence.criteria.CriteriaBuilder;
 import javax.sql.DataSource;
+import java.util.ArrayList;
 import java.util.List;
 
 @Repository
@@ -182,5 +184,48 @@ public class ContentDao {
                         rs.getString("videoTitle"),
                         rs.getString("videoURL")
                 ), getTrailerAndMoreContentsByContentIdParam);
+    }
+
+    public List<GetPackageContentRes> getPackageContents() {
+        String getPackageIdsQuery = "select P.packageId, packageTitle" +
+                " from Content_Package_MAP" +
+                " inner join Package P on Content_Package_MAP.packageId = P.packageId" +
+                " group by Content_Package_MAP.packageId" +
+                " having count(contentId) >= ?";
+        int getPackageIdsParam = 3;      // 보여 줄 최소 Package 의 컨텐츠 개수
+        String getPackageContentSimplesQuery = "select contentTitle, contentPosterURL, contentURL" +
+                " from Package" +
+                " inner join Content_Package_MAP CPM on Package.packageId = CPM.packageId" +
+                " inner join Content C on CPM.contentId = C.contentId" +
+                " where Package.packageId = ?" +
+                " order by Package.packageId asc";
+        int getPackageContentSimpleParam;
+        List<GetPackageSimpleRes> packageSimpleList = this.jdbcTemplate.query(getPackageIdsQuery,
+                (rs, rowNum) -> new GetPackageSimpleRes(
+                        rs.getInt("packageId"),
+                        rs.getString("packageTitle")
+                ), getPackageIdsParam);
+
+        System.out.println(packageSimpleList.size()); //test: 3
+
+        List<GetPackageContentRes> getPackageContents = new ArrayList<GetPackageContentRes>();
+
+        for(int i = 0; i < packageSimpleList.size(); i++) {
+            getPackageContentSimpleParam = packageSimpleList.get(i).getPackageId();
+            List<GetContentSimpleRes> contentSimpleList = this.jdbcTemplate.query(getPackageContentSimplesQuery,
+                    (rs, rowNum) -> new GetContentSimpleRes(
+                            rs.getString("contentTitle"),
+                            rs.getString("contentPosterURL"),
+                            rs.getString("contentURL")
+                    ), getPackageContentSimpleParam);
+
+            getPackageContents.add(new GetPackageContentRes(
+                    packageSimpleList.get(i).getPackageId(),
+                    packageSimpleList.get(i).getPackageTitle(),
+                    contentSimpleList
+                    ));
+        }
+
+        return getPackageContents;
     }
 }

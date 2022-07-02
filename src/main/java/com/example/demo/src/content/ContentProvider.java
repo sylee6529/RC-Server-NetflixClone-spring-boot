@@ -60,4 +60,14 @@ public class ContentProvider {
             throw new BaseException(DATABASE_ERROR);
         }
     }
+
+    public List<GetPackageContentRes> getPackageContents() throws BaseException {
+        try {
+            System.out.println("1");
+            List<GetPackageContentRes> getPackageSimplesRes = contentDao.getPackageContents();
+            return getPackageSimplesRes;
+        } catch (Exception exception) {
+            throw new BaseException(DATABASE_ERROR);
+        }
+    }
 }

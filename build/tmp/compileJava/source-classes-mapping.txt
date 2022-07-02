@@ -56,9 +56,13 @@ com/example/demo/src/content/model/GetContentSimpleRes.java
  com.example.demo.src.content.model.GetContentSimpleRes
 com/example/demo/src/content/model/GetVideoSimpleRes.java
  com.example.demo.src.content.model.GetVideoSimpleRes
-com/example/demo/src/content/ContentController.java
- com.example.demo.src.content.ContentController
+com/example/demo/src/content/model/GetPackageSimpleRes.java
+ com.example.demo.src.content.model.GetPackageSimpleRes
+com/example/demo/src/content/model/GetPackageContentRes.java
+ com.example.demo.src.content.model.GetPackageContentRes
 com/example/demo/src/content/ContentDao.java
  com.example.demo.src.content.ContentDao
 com/example/demo/src/content/ContentProvider.java
  com.example.demo.src.content.ContentProvider
+com/example/demo/src/content/ContentController.java
+ com.example.demo.src.content.ContentController
